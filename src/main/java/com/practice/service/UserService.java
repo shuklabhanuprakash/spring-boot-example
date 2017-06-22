@@ -14,6 +14,12 @@ import com.practice.model.User;
 public interface UserService {
 
 	List<User> getAllUsers();
+
+	User findUserById(Integer id);
+
+	User save(User user);
+
+	List<User> findUserByName(String name);
 	
 	
 

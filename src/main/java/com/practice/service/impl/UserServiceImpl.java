@@ -6,6 +6,7 @@ package com.practice.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.practice.dao.BaseDao;
@@ -20,9 +21,9 @@ import com.practice.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	
-	/*@Autowired
+	@Autowired
 	public CrudRepository<User, Integer> crudDao;
-	*/
+	
 	
 	@Autowired
     BaseDao baseDao;
@@ -30,7 +31,31 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUsers() {
 		
-		return (List<User>) baseDao.findAll();
+		return (List<User>) crudDao.findAll();
 	}
 
+
+	@Override
+	public User findUserById(Integer id) {
+		return crudDao.findOne(id);
+	}
+
+
+	@Override
+	public User save(User user) {
+		return crudDao.save(user);
+	}
+
+
+	@Override
+	public List<User> findUserByName(String name) {
+		// TODO Auto-generated method stub
+		//return crudDao.findOne(name);
+		return baseDao.findByName(name);
+	}
+
+	
+	
+	
+	
 }
